@@ -144,19 +144,42 @@ class DoorAccessManager {
             print("📦 Request body to /register:\n\(jsonString)")
         }
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { [self] data, response, error in
             guard let data = data, error == nil else { return }
             if let responseJSON = try? JSONSerialization.jsonObject(with: data) as? [String: String],
                let secretBase64 = responseJSON["secret"],
-               let secretData = Data(base64Encoded: secretBase64) {
-                UserDefaults.standard.set(secretData, forKey: "totpSecret")
-                print("Received and stored TOTP secret.")
+               let encryptedSecret = Data(base64Encoded: secretBase64) {
+                print("🔒 Encrypted secret (base64): \(secretBase64)")
+                var error: Unmanaged<CFError>?
+                guard let decryptedSecret = SecKeyCreateDecryptedData(
+                    privateKey,
+                    .rsaEncryptionPKCS1,
+                    encryptedSecret as CFData,
+                    &error
+                ) as Data? else {
+                    print("Failed to decrypt secret: \(error!.takeRetainedValue() as Error)")
+                    return
+                }
+                let decryptedBase64 = decryptedSecret.base64EncodedString()
+                print("🔓 Decrypted secret (base64): \(decryptedBase64)")
+
+                guard let base32String = String(data: decryptedSecret, encoding: .utf8) else {
+                    print("Failed to decode secret as UTF-8 string")
+                    return
+                }
+
+                guard let rawSecret = self.base32DecodeToData(base32String) else {
+                    print("Failed to decode Base32 TOTP secret")
+                    return
+                }
+
+                UserDefaults.standard.set(rawSecret, forKey: "totpSecret")
+                print("🔐 Decrypted and decoded TOTP secret stored.")
             }
         }.resume()
     }
 
     func reset() {
-        // 1. Delete UUID
         // 1. Delete UUID and TOTP secret
         UserDefaults.standard.removeObject(forKey: "deviceUUID")
         // 2. Delete keypair from Keychain
@@ -177,15 +200,87 @@ class DoorAccessManager {
     }
 
     func openDoor() {
-        // Use serverURL for operate endpoint
         print("Sending open request to: \(serverURL)/operate")
+        
         // 1. Generate TOTP
-        // 2. Generate salt
-        // 3. Sign the message with Secure Enclave key
-        // 4. Send signed JSON to server
         let secret = loadSharedSecret()
         let totp = TOTPGenerator.generateTOTP(secret: secret)
-        print("TOTP: \(totp)")
+        print("🔢 Generated TOTP: \(totp)")
+        
+        // 2. Generate random salt
+        var saltBytes = [UInt8](repeating: 0, count: 16)
+        let result = SecRandomCopyBytes(kSecRandomDefault, saltBytes.count, &saltBytes)
+        guard result == errSecSuccess else {
+            print("Failed to generate salt")
+            return
+        }
+        let salt = Data(saltBytes)
+        let saltBase64 = salt.base64EncodedString()
+        
+        // 3. Sign the message
+        guard let uuid = UserDefaults.standard.string(forKey: "deviceUUID") else { return }
+        let jsonToSign: [String: String] = [
+            "token": totp,
+            "_salt": saltBase64
+        ]
+        guard let messageData = try? JSONSerialization.data(withJSONObject: jsonToSign, options: [.sortedKeys]) else {
+            print("Failed to create JSON message")
+            return
+        }
+
+        let tag = "philippe.phidoor.keypair".data(using: .utf8)!
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrApplicationTag as String: tag,
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+            kSecReturnRef as String: true
+        ]
+
+        var item: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess else {
+            print("Private key not found")
+            return
+        }
+        let privateKey = item as! SecKey
+
+        var error: Unmanaged<CFError>?
+        guard let signature = SecKeyCreateSignature(
+            privateKey,
+            .rsaSignatureMessagePKCS1v15SHA256,
+            messageData as CFData,
+            &error
+        ) as Data? else {
+            print("Signature failed: \(error!.takeRetainedValue() as Error)")
+            return
+        }
+
+        let signatureBase64 = signature.base64EncodedString()
+        print("✍️ Signature (base64): \(signatureBase64)")
+        
+        // 4. Send signed request
+        guard let url = URL(string: "\(serverURL)/operate") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let totpMessage = String(data: messageData, encoding: .utf8) ?? ""
+        let body: [String: String] = [
+            "id": uuid,
+            "totp_message": totpMessage,
+            "signature": signatureBase64
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        if let httpBody = request.httpBody, let jsonString = String(data: httpBody, encoding: .utf8) {
+            print("📦 Request body to /operate:\n\(jsonString)")
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("❌ Error sending request: \(error)")
+            } else {
+                print("✅ Request sent successfully")
+            }
+        }.resume()
     }
 
     private func loadSharedSecret() -> Data {
@@ -276,6 +371,27 @@ class DoorAccessManager {
         }
     }
     
+    private func base32DecodeToData(_ base32String: String) -> Data? {
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+        var cleaned = base32String.uppercased().replacingOccurrences(of: "=", with: "")
+        var bits = ""
+        for c in cleaned {
+            guard let index = alphabet.firstIndex(of: c) else { return nil }
+            let val = alphabet.distance(from: alphabet.startIndex, to: index)
+            let binary = String(val, radix: 2).leftPadding(toLength: 5, withPad: "0")
+            bits += binary
+        }
+
+        var data = Data()
+        for i in stride(from: 0, to: bits.count, by: 8) {
+            let chunk = bits.dropFirst(i).prefix(8)
+            if chunk.count == 8, let byte = UInt8(chunk, radix: 2) {
+                data.append(byte)
+            }
+        }
+        return data
+    }
+    
 }
 
 // MARK: - TOTP Generator
@@ -285,7 +401,7 @@ struct TOTPGenerator {
         var counterBigEndian = counter.bigEndian
         let counterData = Data(bytes: &counterBigEndian, count: MemoryLayout.size(ofValue: counterBigEndian))
 
-        let hmac = HMAC<Insecure.SHA1>.authenticationCode(for: counterData, using: SymmetricKey(data: secret))
+        let hmac = HMAC<SHA256>.authenticationCode(for: counterData, using: SymmetricKey(data: secret))
         let hash = Data(hmac)
 
         let offset = Int(hash.last! & 0x0f)
@@ -295,5 +411,15 @@ struct TOTPGenerator {
 
         let otp = number % UInt32(pow(10, Float(digits)))
         return String(format: "%0*u", digits, otp)
+    }
+}
+
+private extension String {
+    func leftPadding(toLength: Int, withPad: String) -> String {
+        if self.count < toLength {
+            return String(repeating: withPad, count: toLength - self.count) + self
+        } else {
+            return String(self.suffix(toLength))
+        }
     }
 }
