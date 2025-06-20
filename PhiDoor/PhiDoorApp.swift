@@ -104,40 +104,22 @@ class DoorAccessManager {
     @AppStorage("serverURL") private var serverURL: String = ""
 
     func register() {
-        // 1. Generate UUID & save
-        let uuid = UUID().uuidString
-        UserDefaults.standard.set(uuid, forKey: "deviceUUID")
-
+        // 1. Generate or reuse UUID & save
+        let uuid: String
+        if let savedUUID = UserDefaults.standard.string(forKey: "deviceUUID") {
+            uuid = savedUUID
+            print("Using existing UUID: \(uuid)")
+        } else {
+            uuid = UUID().uuidString
+            UserDefaults.standard.set(uuid, forKey: "deviceUUID")
+            print("Generated new UUID: \(uuid)")
+        }
         let tag = "philippe.phidoor.keypair".data(using: .utf8)!
 
-        let accessible = kSecAttrAccessibleWhenUnlockedThisDeviceOnly
-        
-        let attributes: [String: Any] = [
-            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
-            kSecAttrKeySizeInBits as String: 2048,
-            kSecPrivateKeyAttrs as String: [
-                kSecAttrIsPermanent as String: true,
-                kSecAttrApplicationTag as String: tag,
-                kSecAttrAccessible as String: accessible
-            ]
-        ]
-        var error: Unmanaged<CFError>?
-        guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
-            print("Error generating private key: \(error!.takeRetainedValue() as Error)")
-            return
-        }
-        print("✅ Private key generated and stored in key chain")
-
-        guard let publicKey = SecKeyCopyPublicKey(privateKey) else {
-            print("Failed to get public key")
+        guard let (privateKey, publicKeyData) = getOrCreateKeyPair(tag: tag) else {
             return
         }
 
-        guard let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, &error) as Data? else {
-            print("Error exporting public key: \(error!.takeRetainedValue() as Error)")
-            return
-        }
-        
         let fullKeyData = spkiEncodeRSAPublicKey(pkcs1Key: publicKeyData)
         let base64 = fullKeyData.base64EncodedString(options: [.lineLength64Characters])
         let publicKeyPEM = """
@@ -175,7 +157,23 @@ class DoorAccessManager {
 
     func reset() {
         // 1. Delete UUID
+        // 1. Delete UUID and TOTP secret
+        UserDefaults.standard.removeObject(forKey: "deviceUUID")
         // 2. Delete keypair from Keychain
+        let tag = "philippe.phidoor.keypair".data(using: .utf8)!
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrApplicationTag as String: tag,
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA
+        ]
+        let status = SecItemDelete(query as CFDictionary)
+        if status == errSecSuccess {
+            print("🗑️ Deleted key pair from keychain")
+        } else if status == errSecItemNotFound {
+            print("ℹ️ Key pair not found in keychain")
+        } else {
+            print("⚠️ Failed to delete key pair: \(status)")
+        }
     }
 
     func openDoor() {
@@ -193,6 +191,51 @@ class DoorAccessManager {
     private func loadSharedSecret() -> Data {
         return UserDefaults.standard.data(forKey: "totpSecret") ?? Data()
     }
+    
+    private func getOrCreateKeyPair(tag: Data) -> (SecKey, Data)? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrApplicationTag as String: tag,
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+            kSecReturnRef as String: true
+        ]
+
+        var item: CFTypeRef?
+        if SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess {
+            let existingPrivateKey = item as! SecKey
+            if let existingPublicKey = SecKeyCopyPublicKey(existingPrivateKey),
+               let publicKeyData = SecKeyCopyExternalRepresentation(existingPublicKey, nil) as Data? {
+                print("✅ Reusing existing key pair")
+                return (existingPrivateKey, publicKeyData)
+            }
+        }
+
+        let accessible = kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        let attributes: [String: Any] = [
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+            kSecAttrKeySizeInBits as String: 2048,
+            kSecPrivateKeyAttrs as String: [
+                kSecAttrIsPermanent as String: true,
+                kSecAttrApplicationTag as String: tag,
+                kSecAttrAccessible as String: accessible
+            ]
+        ]
+        var error: Unmanaged<CFError>?
+        guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
+            print("Error generating private key: \(error!.takeRetainedValue() as Error)")
+            return nil
+        }
+        print("✅ Private key generated and stored in key chain")
+
+        guard let publicKey = SecKeyCopyPublicKey(privateKey),
+              let publicKeyData = SecKeyCopyExternalRepresentation(publicKey, &error) as Data? else {
+            print("Failed to get public key: \(error!.takeRetainedValue() as Error)")
+            return nil
+        }
+
+        return (privateKey, publicKeyData)
+    }
+
     
     func spkiEncodeRSAPublicKey(pkcs1Key: Data) -> Data {
         // SPKI header for rsaEncryption {OID + NULL}
