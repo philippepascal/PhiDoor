@@ -146,8 +146,9 @@ class DoorAccessManager {
 
         URLSession.shared.dataTask(with: request) { [self] data, response, error in
             guard let data = data, error == nil else { return }
+            print("repsonse: \(String(data: data, encoding: .utf8) ?? "No data"))")
             if let responseJSON = try? JSONSerialization.jsonObject(with: data) as? [String: String],
-               let secretBase64 = responseJSON["secret"],
+               let secretBase64 = responseJSON["encrypted_secret"],
                let encryptedSecret = Data(base64Encoded: secretBase64) {
                 print("🔒 Encrypted secret (base64): \(secretBase64)")
                 var error: Unmanaged<CFError>?
@@ -168,6 +169,8 @@ class DoorAccessManager {
                     return
                 }
 
+                print("Decoded Base32: \(base32String)")
+                
                 guard let rawSecret = self.base32DecodeToData(base32String) else {
                     print("Failed to decode Base32 TOTP secret")
                     return
