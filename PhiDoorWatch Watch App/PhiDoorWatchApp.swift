@@ -23,30 +23,33 @@ struct WatchContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
+//                Spacer()
 
                 Button(action: {
+                    WKInterfaceDevice.current().play(.success)
                     DoorAccessManager.shared.openDoor()
                 }) {
-                    Text("Open Door")
-                        .font(.headline)
-                        .foregroundColor(.white)
+                    Label("Open Door", systemImage: "lock.open.fill")
+                        .font(.title3)
+                        .multilineTextAlignment(.center)
                         .padding()
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(12)
                 }
+                .buttonStyle(.plain)
 
                 Spacer()
 
                 NavigationLink(destination: WatchSettingsView()) {
-                    Image(systemName: "gearshape")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .padding(.top, 8)
+                    Label("Settings", systemImage: "gearshape")
+                        .font(.footnote)
                 }
+                .buttonStyle(.bordered)
+                .tint(.blue.opacity(0.7))
             }
-            .padding()
+//            .padding()
         }
         .onOpenURL { url in
             if url.scheme == "phidoor", url.host == "open" {
@@ -61,7 +64,7 @@ struct WatchSettingsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(spacing: 8) {
                 TextField("Server URL", text: $serverURL)
                     .textFieldStyle(.plain)
                     .textInputAutocapitalization(.never)
@@ -70,28 +73,28 @@ struct WatchSettingsView: View {
                 Button(action: {
                     DoorAccessManager.shared.register()
                 }) {
-                    Text("Register")
-                        .font(.subheadline)
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.green)
-                        .cornerRadius(10)
+                    Label("Register", systemImage: "person.crop.circle.badge.plus")
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.green)
 
                 Button(action: {
                     DoorAccessManager.shared.reset()
                 }) {
-                    Text("Reset")
-                        .font(.footnote)
-                        .foregroundColor(.white)
-                        .padding(6)
-                        .background(Color.red)
-                        .cornerRadius(8)
+                    Label("Reset", systemImage: "arrow.counterclockwise")
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
             }
-            .padding()
+//            .padding()
         }
-        .navigationTitle("Settings")
+//        .navigationTitle("Settings")
     }
+}
+#Preview {
+    WatchContentView()
+}
+
+#Preview {
+    WatchSettingsView()
 }
