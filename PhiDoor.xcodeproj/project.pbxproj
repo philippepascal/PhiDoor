@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		67E794492E0E725500ABC387 /* PhiDoorWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 67E794292E0E725300ABC387 /* PhiDoorWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67E794612E0E746A00ABC387 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E794602E0E746A00ABC387 /* WidgetKit.framework */; };
+		67E794632E0E746A00ABC387 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E794622E0E746A00ABC387 /* SwiftUI.framework */; };
+		67E7946C2E0E746B00ABC387 /* PhiDoorComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 67E7945E2E0E746A00ABC387 /* PhiDoorComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		67C50C012E0483AC006C4306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,12 +28,71 @@
 			remoteGlobalIDString = 67C50BF22E0483AA006C4306;
 			remoteInfo = PhiDoor;
 		};
+		67E794362E0E725400ABC387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67C50BEB2E0483A9006C4306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E794282E0E725300ABC387;
+			remoteInfo = "PhiDoorWatch Watch App";
+		};
+		67E794402E0E725500ABC387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67C50BEB2E0483A9006C4306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E794282E0E725300ABC387;
+			remoteInfo = "PhiDoorWatch Watch App";
+		};
+		67E794472E0E725500ABC387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67C50BEB2E0483A9006C4306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E794282E0E725300ABC387;
+			remoteInfo = "PhiDoorWatch Watch App";
+		};
+		67E7946A2E0E746B00ABC387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67C50BEB2E0483A9006C4306 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E7945D2E0E746A00ABC387;
+			remoteInfo = PhiDoorComplicationExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		67E7944D2E0E725500ABC387 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				67E794492E0E725500ABC387 /* PhiDoorWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E794712E0E746B00ABC387 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				67E7946C2E0E746B00ABC387 /* PhiDoorComplicationExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		67C50BF32E0483AA006C4306 /* PhiDoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhiDoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67C50C002E0483AC006C4306 /* PhiDoorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhiDoorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67C50C0A2E0483AC006C4306 /* PhiDoorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhiDoorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E794292E0E725300ABC387 /* PhiDoorWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PhiDoorWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E794352E0E725400ABC387 /* PhiDoorWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PhiDoorWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E7943F2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PhiDoorWatch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E7945E2E0E746A00ABC387 /* PhiDoorComplicationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhiDoorComplicationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E794602E0E746A00ABC387 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		67E794622E0E746A00ABC387 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -37,6 +103,62 @@
 			);
 			target = 67C50BF22E0483AA006C4306 /* PhiDoor */;
 		};
+		67E794232E0E6F4500ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67C50BFF2E0483AC006C4306 /* PhiDoorTests */;
+		};
+		67E794242E0E6F4500ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67C50C092E0483AC006C4306 /* PhiDoorUITests */;
+		};
+		67E794572E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */;
+		};
+		67E794582E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch AppTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67E794342E0E725400ABC387 /* PhiDoorWatch Watch AppTests */;
+		};
+		67E794592E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch AppUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67E7943E2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */;
+		};
+		67E794702E0E746B00ABC387 /* Exceptions for "PhiDoorComplication" folder in "PhiDoorComplicationExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */;
+		};
+		67E794732E0E781000ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorComplicationExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utils.swift,
+			);
+			target = 67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */;
+		};
+		67E794782E0E793F00ABC387 /* Exceptions for "PhiDoorWatch Watch App" folder in "PhiDoorComplicationExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				OpenDoorIntent.swift,
+			);
+			target = 67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +166,12 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				67C50C252E049AB9006C4306 /* Exceptions for "PhiDoor" folder in "PhiDoor" target */,
+				67E794232E0E6F4500ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorTests" target */,
+				67E794242E0E6F4500ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorUITests" target */,
+				67E794572E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch App" target */,
+				67E794582E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch AppTests" target */,
+				67E794592E0E731600ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorWatch Watch AppUITests" target */,
+				67E794732E0E781000ABC387 /* Exceptions for "PhiDoor" folder in "PhiDoorComplicationExtension" target */,
 			);
 			path = PhiDoor;
 			sourceTree = "<group>";
@@ -56,6 +184,32 @@
 		67C50C0D2E0483AC006C4306 /* PhiDoorUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PhiDoorUITests;
+			sourceTree = "<group>";
+		};
+		67E7942A2E0E725300ABC387 /* PhiDoorWatch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				67E794782E0E793F00ABC387 /* Exceptions for "PhiDoorWatch Watch App" folder in "PhiDoorComplicationExtension" target */,
+			);
+			path = "PhiDoorWatch Watch App";
+			sourceTree = "<group>";
+		};
+		67E794382E0E725400ABC387 /* PhiDoorWatch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "PhiDoorWatch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		67E794422E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "PhiDoorWatch Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		67E794642E0E746A00ABC387 /* PhiDoorComplication */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				67E794702E0E746B00ABC387 /* Exceptions for "PhiDoorComplication" folder in "PhiDoorComplicationExtension" target */,
+			);
+			path = PhiDoorComplication;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -82,6 +236,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		67E794262E0E725300ABC387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E794322E0E725400ABC387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7943C2E0E725500ABC387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7945B2E0E746A00ABC387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67E794632E0E746A00ABC387 /* SwiftUI.framework in Frameworks */,
+				67E794612E0E746A00ABC387 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +275,11 @@
 				67C50BF52E0483AA006C4306 /* PhiDoor */,
 				67C50C032E0483AC006C4306 /* PhiDoorTests */,
 				67C50C0D2E0483AC006C4306 /* PhiDoorUITests */,
+				67E7942A2E0E725300ABC387 /* PhiDoorWatch Watch App */,
+				67E794382E0E725400ABC387 /* PhiDoorWatch Watch AppTests */,
+				67E794422E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */,
+				67E794642E0E746A00ABC387 /* PhiDoorComplication */,
+				67E7945F2E0E746A00ABC387 /* Frameworks */,
 				67C50BF42E0483AA006C4306 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,8 +290,21 @@
 				67C50BF32E0483AA006C4306 /* PhiDoor.app */,
 				67C50C002E0483AC006C4306 /* PhiDoorTests.xctest */,
 				67C50C0A2E0483AC006C4306 /* PhiDoorUITests.xctest */,
+				67E794292E0E725300ABC387 /* PhiDoorWatch Watch App.app */,
+				67E794352E0E725400ABC387 /* PhiDoorWatch Watch AppTests.xctest */,
+				67E7943F2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests.xctest */,
+				67E7945E2E0E746A00ABC387 /* PhiDoorComplicationExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		67E7945F2E0E746A00ABC387 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67E794602E0E746A00ABC387 /* WidgetKit.framework */,
+				67E794622E0E746A00ABC387 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,10 +317,12 @@
 				67C50BEF2E0483AA006C4306 /* Sources */,
 				67C50BF02E0483AA006C4306 /* Frameworks */,
 				67C50BF12E0483AA006C4306 /* Resources */,
+				67E7944D2E0E725500ABC387 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				67E794482E0E725500ABC387 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				67C50BF52E0483AA006C4306 /* PhiDoor */,
@@ -176,6 +380,98 @@
 			productReference = 67C50C0A2E0483AC006C4306 /* PhiDoorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E7944A2E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch App" */;
+			buildPhases = (
+				67E794252E0E725300ABC387 /* Sources */,
+				67E794262E0E725300ABC387 /* Frameworks */,
+				67E794272E0E725300ABC387 /* Resources */,
+				67E794712E0E746B00ABC387 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67E7946B2E0E746B00ABC387 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				67E7942A2E0E725300ABC387 /* PhiDoorWatch Watch App */,
+			);
+			name = "PhiDoorWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "PhiDoorWatch Watch App";
+			productReference = 67E794292E0E725300ABC387 /* PhiDoorWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		67E794342E0E725400ABC387 /* PhiDoorWatch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E7944E2E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch AppTests" */;
+			buildPhases = (
+				67E794312E0E725400ABC387 /* Sources */,
+				67E794322E0E725400ABC387 /* Frameworks */,
+				67E794332E0E725400ABC387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67E794372E0E725400ABC387 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				67E794382E0E725400ABC387 /* PhiDoorWatch Watch AppTests */,
+			);
+			name = "PhiDoorWatch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "PhiDoorWatch Watch AppTests";
+			productReference = 67E794352E0E725400ABC387 /* PhiDoorWatch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		67E7943E2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E794512E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch AppUITests" */;
+			buildPhases = (
+				67E7943B2E0E725500ABC387 /* Sources */,
+				67E7943C2E0E725500ABC387 /* Frameworks */,
+				67E7943D2E0E725500ABC387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67E794412E0E725500ABC387 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				67E794422E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */,
+			);
+			name = "PhiDoorWatch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "PhiDoorWatch Watch AppUITests";
+			productReference = 67E7943F2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E7946D2E0E746B00ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorComplicationExtension" */;
+			buildPhases = (
+				67E7945A2E0E746A00ABC387 /* Sources */,
+				67E7945B2E0E746A00ABC387 /* Frameworks */,
+				67E7945C2E0E746A00ABC387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				67E794642E0E746A00ABC387 /* PhiDoorComplication */,
+			);
+			name = PhiDoorComplicationExtension;
+			packageProductDependencies = (
+			);
+			productName = PhiDoorComplicationExtension;
+			productReference = 67E7945E2E0E746A00ABC387 /* PhiDoorComplicationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,6 +493,20 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 67C50BF22E0483AA006C4306;
 					};
+					67E794282E0E725300ABC387 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					67E794342E0E725400ABC387 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 67E794282E0E725300ABC387;
+					};
+					67E7943E2E0E725500ABC387 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 67E794282E0E725300ABC387;
+					};
+					67E7945D2E0E746A00ABC387 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 				};
 			};
 			buildConfigurationList = 67C50BEE2E0483A9006C4306 /* Build configuration list for PBXProject "PhiDoor" */;
@@ -216,6 +526,10 @@
 				67C50BF22E0483AA006C4306 /* PhiDoor */,
 				67C50BFF2E0483AC006C4306 /* PhiDoorTests */,
 				67C50C092E0483AC006C4306 /* PhiDoorUITests */,
+				67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */,
+				67E794342E0E725400ABC387 /* PhiDoorWatch Watch AppTests */,
+				67E7943E2E0E725500ABC387 /* PhiDoorWatch Watch AppUITests */,
+				67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +550,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		67C50C082E0483AC006C4306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E794272E0E725300ABC387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E794332E0E725400ABC387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7943D2E0E725500ABC387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7945C2E0E746A00ABC387 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,6 +608,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		67E794252E0E725300ABC387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E794312E0E725400ABC387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7943B2E0E725500ABC387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E7945A2E0E746A00ABC387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -278,6 +648,26 @@
 			isa = PBXTargetDependency;
 			target = 67C50BF22E0483AA006C4306 /* PhiDoor */;
 			targetProxy = 67C50C0B2E0483AC006C4306 /* PBXContainerItemProxy */;
+		};
+		67E794372E0E725400ABC387 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */;
+			targetProxy = 67E794362E0E725400ABC387 /* PBXContainerItemProxy */;
+		};
+		67E794412E0E725500ABC387 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */;
+			targetProxy = 67E794402E0E725500ABC387 /* PBXContainerItemProxy */;
+		};
+		67E794482E0E725500ABC387 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E794282E0E725300ABC387 /* PhiDoorWatch Watch App */;
+			targetProxy = 67E794472E0E725500ABC387 /* PBXContainerItemProxy */;
+		};
+		67E7946B2E0E746B00ABC387 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E7945D2E0E746A00ABC387 /* PhiDoorComplicationExtension */;
+			targetProxy = 67E7946A2E0E746B00ABC387 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -537,6 +927,202 @@
 			};
 			name = Release;
 		};
+		67E7944B2E0E725500ABC387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PhiDoorWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = philippe.PhiDoor;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = philippe.PhiDoor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		67E7944C2E0E725500ABC387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PhiDoorWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = philippe.PhiDoor;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = philippe.PhiDoor.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Release;
+		};
+		67E7944F2E0E725500ABC387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "philippe.PhiDoorWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhiDoorWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PhiDoorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		67E794502E0E725500ABC387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "philippe.PhiDoorWatch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhiDoorWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PhiDoorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Release;
+		};
+		67E794522E0E725500ABC387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "philippe.PhiDoorWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "PhiDoorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		67E794532E0E725500ABC387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "philippe.PhiDoorWatch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "PhiDoorWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Release;
+		};
+		67E7946E2E0E746B00ABC387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhiDoorComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhiDoorComplication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = philippe.PhiDoor.watchkitapp.PhiDoorComplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		67E7946F2E0E746B00ABC387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NH2ZBKQ9M2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhiDoorComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhiDoorComplication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = philippe.PhiDoor.watchkitapp.PhiDoorComplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -572,6 +1158,42 @@
 			buildConfigurations = (
 				67C50C1B2E0483AC006C4306 /* Debug */,
 				67C50C1C2E0483AC006C4306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E7944A2E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E7944B2E0E725500ABC387 /* Debug */,
+				67E7944C2E0E725500ABC387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E7944E2E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E7944F2E0E725500ABC387 /* Debug */,
+				67E794502E0E725500ABC387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E794512E0E725500ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorWatch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E794522E0E725500ABC387 /* Debug */,
+				67E794532E0E725500ABC387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E7946D2E0E746B00ABC387 /* Build configuration list for PBXNativeTarget "PhiDoorComplicationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E7946E2E0E746B00ABC387 /* Debug */,
+				67E7946F2E0E746B00ABC387 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
