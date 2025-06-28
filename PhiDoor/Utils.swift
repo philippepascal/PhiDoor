@@ -122,7 +122,7 @@ class DoorAccessManager {
         }
     }
 
-    func openDoor() {
+    func openDoor(completion: ((Bool) -> Void)? = nil) {
         print("Sending open request to: \(serverURL)/operate")
         
         // 1. Generate TOTP
@@ -200,8 +200,12 @@ class DoorAccessManager {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("❌ Error sending request: \(error)")
+                completion?(false)
+            } else if let httpResponse = response as? HTTPURLResponse {
+                print("✅ Received HTTP \(httpResponse.statusCode)")
+                completion?(httpResponse.statusCode == 200)
             } else {
-                print("✅ Request sent successfully")
+                completion?(false)
             }
         }.resume()
     }

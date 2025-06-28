@@ -22,7 +22,17 @@ struct ContentView: View {
                     Spacer()
 
                     Button(action: {
-                        DoorAccessManager.shared.openDoor()
+                        let tapFeedback = UIImpactFeedbackGenerator(style: .light)
+                        tapFeedback.impactOccurred()
+
+                        DoorAccessManager.shared.openDoor { success in
+                            let feedback = UINotificationFeedbackGenerator()
+                            if success {
+                                feedback.notificationOccurred(.success)
+                            } else {
+                                feedback.notificationOccurred(.error)
+                            }
+                        }
                     }) {
                         Text("Open Door")
                             .font(.largeTitle)

@@ -26,8 +26,8 @@ struct WatchContentView: View {
 //                Spacer()
 
                 Button(action: {
-                    WKInterfaceDevice.current().play(.success)
-                    DoorAccessManager.shared.openDoor()
+                    WKInterfaceDevice.current().play(.click)
+
                 }) {
                     Label("Open Door", systemImage: "lock.open.fill")
                         .font(.title3)
@@ -53,7 +53,13 @@ struct WatchContentView: View {
         }
         .onOpenURL { url in
             if url.scheme == "phidoor", url.host == "open" {
-                DoorAccessManager.shared.openDoor()
+                DoorAccessManager.shared.openDoor() { success in
+                    if success {
+                        WKInterfaceDevice.current().play(.success)
+                    } else {
+                        WKInterfaceDevice.current().play(.failure)
+                    }
+                }
             }
         }
     }
